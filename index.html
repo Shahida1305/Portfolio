@@ -29,29 +29,43 @@
     header{
       position:sticky; top:0; z-index:20;
       backdrop-filter: blur(8px);
-      background: rgba(11,16,32,.85);
+      background: rgba(11,16,32,.9);
       border-bottom:1px solid var(--line);
     }
     .nav{
       display:flex; align-items:center; justify-content:space-between;
       padding:14px 0;
+      gap:12px;
     }
-    .brand{
-      font-weight:700; letter-spacing:.3px;
-    }
+    .brand{font-weight:700; letter-spacing:.3px}
     .menu{
-      display:flex; gap:10px; flex-wrap:wrap;
+      display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end;
     }
-    .menu a{
+    .menu button{
       border:1px solid var(--line);
       background:#10193a;
       color:var(--text);
       padding:8px 12px;
       border-radius:999px;
       font-size:14px;
+      cursor:pointer;
     }
+    .menu button.active{
+      border-color:var(--accent);
+      box-shadow:0 0 0 1px var(--accent) inset;
+      background:#132353;
+    }
+
+    main{padding:22px 0 28px}
+    .page{
+      display:none;
+      animation:fade .2s ease;
+    }
+    .page.active{display:block}
+    @keyframes fade {from{opacity:.65; transform:translateY(2px)} to{opacity:1; transform:none}}
+
     .hero{
-      padding:56px 0 30px;
+      padding:12px 0 6px;
       display:grid;
       grid-template-columns: 1.3fr .9fr;
       gap:20px;
@@ -74,14 +88,11 @@
       background:#111c40;
     }
     .quick p{margin:8px 0}
-    section{padding:14px 0 6px}
     .section-title{
-      font-size:26px; margin:10px 0 14px;
+      font-size:26px; margin:8px 0 14px;
       letter-spacing:.2px;
     }
-    .grid-2{
-      display:grid; grid-template-columns:1fr 1fr; gap:16px;
-    }
+    .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
     .timeline-item{
       border-left:2px solid var(--line);
       margin-left:8px; padding-left:14px; margin-bottom:14px;
@@ -98,12 +109,21 @@
     .pub .title{font-weight:650}
     .pub .meta{color:var(--muted); font-size:14px; margin:6px 0}
     .footer{
-      margin:34px 0 26px;
+      margin:24px 0 18px;
       color:var(--muted);
       text-align:center;
       font-size:14px;
     }
+    .pdf-wrap{
+      background:#121a33;border:1px solid var(--line);
+      border-radius:14px;padding:10px;
+    }
+    iframe{
+      width:100%;height:80vh;border:none;border-radius:10px;background:#fff;
+    }
+
     @media (max-width:900px){
+      .nav{flex-direction:column; align-items:flex-start}
       .hero{grid-template-columns:1fr}
       .grid-2{grid-template-columns:1fr}
       .hero h1{font-size:29px}
@@ -114,48 +134,56 @@
   <header>
     <div class="container nav">
       <div class="brand">Professional Portfolio</div>
-      <nav class="menu">
-        <a href="#about">About</a>
-        <a href="#education">Education</a>
-        <a href="#research">Research</a>
-        <a href="#publications">Publications</a>
-        <a href="#teaching">Teaching</a>
-        <a href="#contact">Contact</a>
+      <nav class="menu" id="menu">
+        <button data-tab="personal" class="active">Personal Information</button>
+        <button data-tab="education">Education</button>
+        <button data-tab="research">Research</button>
+        <button data-tab="travel">Travel</button>
+        <button data-tab="publications">Publications</button>
+        <button data-tab="teaching">Teaching</button>
+        <button data-tab="hobby">Hobby</button>
+        <button data-tab="job">Job</button>
+        <button data-tab="analytic">Analytic Part</button>
+        <button data-tab="diploma">Diploma</button>
       </nav>
     </div>
   </header>
 
   <main class="container">
-    <section class="hero" id="about">
-      <div class="card">
-        <h1>Shakhida Nurmakhametova</h1>
-        <div class="subtitle">Professional portfolio on my specialty — <strong>My place in the profession</strong></div>
-        <p>
-          I am an early-career astrophysics researcher focused on stellar systems and their evolution.
-          My current place in the profession is at the intersection of observation, data analysis, and modeling:
-          from spectroscopy and photometry to physical interpretation of post-AGB and binary-star behavior.
-        </p>
-        <div class="chips">
-          <span class="chip">Stellar Astrophysics</span>
-          <span class="chip">Spectroscopy</span>
-          <span class="chip">Photometry</span>
-          <span class="chip">Binary Systems</span>
-          <span class="chip">SED Analysis</span>
-          <span class="chip">Stellar Evolution</span>
+    <!-- PERSONAL -->
+    <section class="page active" id="personal">
+      <div class="hero">
+        <div class="card">
+          <h1>Shakhida Nurmakhametova</h1>
+          <div class="subtitle">Professional portfolio on my specialty — <strong>My place in the profession</strong></div>
+          <p>
+            I am an early-career astrophysics researcher focused on stellar systems and their evolution.
+            My current place in the profession is at the intersection of observation, data analysis, and modeling:
+            from spectroscopy and photometry to physical interpretation of post-AGB and binary-star behavior.
+          </p>
+          <div class="chips">
+            <span class="chip">Stellar Astrophysics</span>
+            <span class="chip">Spectroscopy</span>
+            <span class="chip">Photometry</span>
+            <span class="chip">Binary Systems</span>
+            <span class="chip">SED Analysis</span>
+            <span class="chip">Stellar Evolution</span>
+          </div>
         </div>
-      </div>
 
-      <aside class="card quick">
-        <h3 style="margin-top:0">Quick Profile</h3>
-        <p><strong>Location:</strong> Almaty, Kazakhstan</p>
-        <p><strong>Email:</strong> <a href="mailto:shahidanurmahametova@gmail.com">shahidanurmahametova@gmail.com</a></p>
-        <p><strong>Current degree:</strong> MSc in Physics and Astronomy</p>
-        <p><strong>Institution:</strong> Al-Farabi Kazakh National University</p>
-        <p class="muted">Research direction: post-AGB stars, high-energy variability, orbital parameter estimation, Gaia-based stellar studies.</p>
-      </aside>
+        <aside class="card quick">
+          <h3 style="margin-top:0">Quick Profile</h3>
+          <p><strong>Location:</strong> Almaty, Kazakhstan</p>
+          <p><strong>Email:</strong> <a href="mailto:shahidanurmahametova@gmail.com">shahidanurmahametova@gmail.com</a></p>
+          <p><strong>Current degree:</strong> MSc in Physics and Astronomy</p>
+          <p><strong>Institution:</strong> Al-Farabi Kazakh National University</p>
+          <p class="muted">Research direction: post-AGB stars, high-energy variability, orbital parameter estimation, Gaia-based stellar studies.</p>
+        </aside>
+      </div>
     </section>
 
-    <section id="education">
+    <!-- EDUCATION -->
+    <section class="page" id="education">
       <h2 class="section-title">Education and Training</h2>
       <div class="grid-2">
         <div class="card">
@@ -172,13 +200,11 @@
             <div>Thesis: <em>Study of Evolutionary Processes in BS 4049</em></div>
           </div>
         </div>
-
         <div class="card">
           <h3 style="margin-top:0">Languages</h3>
           <p>Kazakh — native speaker</p>
           <p>English — fluent</p>
           <p>Russian — fluent</p>
-
           <h3>Technical Skills</h3>
           <p><strong>Programming / Tools:</strong> Fortran, Python (AstroPy), IRAF, DS9, CIAO, XSPEC</p>
           <p><strong>OS / Platforms:</strong> Linux (Ubuntu), Windows, Hyper-V</p>
@@ -186,7 +212,8 @@
       </div>
     </section>
 
-    <section id="research">
+    <!-- RESEARCH -->
+    <section class="page" id="research">
       <h2 class="section-title">Research Experience</h2>
       <div class="card">
         <p>
@@ -198,87 +225,66 @@
           observational data, computational tools, and publication-driven analysis.
           I develop strong practical workflows and collaborate across institutions on modern astrophysical problems.
         </p>
-        <p class="muted" style="margin-bottom:0">
-          Research travel: collaboration visit to Saint Petersburg for joint work with Prof. Kholtygin.
-        </p>
       </div>
     </section>
 
-    <section id="publications">
+    <!-- TRAVEL -->
+    <section class="page" id="travel">
+      <h2 class="section-title">Travel</h2>
+      <div class="card">
+        <div class="timeline-item" style="margin-bottom:0">
+          <div class="date">Saint Petersburg, Russia</div>
+          <div><strong>Academic collaboration visit to Prof. Kholtygin</strong></div>
+          <p class="muted" style="margin:8px 0 0">
+            Visit for establishing research collaboration on the study of X-ray stars
+            (joint analysis planning, observational strategy, and future co-authored work).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PUBLICATIONS -->
+    <section class="page" id="publications">
       <h2 class="section-title">Publications and Presentations</h2>
 
       <article class="pub">
-        <div class="title">
-          <a href="https://doi.org/10.1093/mnras/staf1124" target="_blank" rel="noopener">
-            MASTER OT J072007.30+451611.6: A polar with strong optical variability and suppressed He II emission
-          </a>
-        </div>
+        <div class="title"><a href="https://doi.org/10.1093/mnras/staf1124" target="_blank" rel="noopener">MASTER OT J072007.30+451611.6: A polar with strong optical variability and suppressed He II emission</a></div>
         <div class="meta">Bobakov et al. (2025), MNRAS</div>
-        <a href="https://doi.org/10.1093/mnras/staf1124" target="_blank" rel="noopener">DOI: 10.1093/mnras/staf1124</a>
       </article>
 
       <article class="pub">
-        <div class="title">
-          <a href="https://doi.org/10.18524/1810-4215.2025.38.343166" target="_blank" rel="noopener">
-            Periodic variations in the optical spectrum of the post-AGB object LN Hya
-          </a>
-        </div>
+        <div class="title"><a href="https://doi.org/10.18524/1810-4215.2025.38.343166" target="_blank" rel="noopener">Periodic variations in the optical spectrum of the post-AGB object LN Hya</a></div>
         <div class="meta">Achkassova, Nurmakhametova et al. (2025), Odessa Astronomical Publications</div>
-        <a href="https://doi.org/10.18524/1810-4215.2025.38.343166" target="_blank" rel="noopener">DOI: 10.18524/1810-4215.2025.38.343166</a>
       </article>
 
       <article class="pub">
-        <div class="title">
-          <a href="https://doi.org/10.18524/1810-4215.2025.38.343164" target="_blank" rel="noopener">
-            Spectroscopic study of the post-AGB binary HR 4049
-          </a>
-        </div>
+        <div class="title"><a href="https://doi.org/10.18524/1810-4215.2025.38.343164" target="_blank" rel="noopener">Spectroscopic study of the post-AGB binary HR 4049</a></div>
         <div class="meta">Nurmakhametova, Vaidman et al. (2025), Odessa Astronomical Publications</div>
-        <a href="https://doi.org/10.18524/1810-4215.2025.38.343164" target="_blank" rel="noopener">DOI: 10.18524/1810-4215.2025.38.343164</a>
       </article>
 
       <article class="pub">
-        <div class="title">
-          <a href="https://doi.org/10.3390/universe11110359" target="_blank" rel="noopener">
-            Evaluating Gaia astrometric quality and distances for Galactic hot supergiants
-          </a>
-        </div>
+        <div class="title"><a href="https://doi.org/10.3390/universe11110359" target="_blank" rel="noopener">Evaluating Gaia astrometric quality and distances for Galactic hot supergiants</a></div>
         <div class="meta">Vaidman, Nurmakhametova et al. (2025), Universe</div>
-        <a href="https://doi.org/10.3390/universe11110359" target="_blank" rel="noopener">DOI: 10.3390/universe11110359</a>
       </article>
 
       <article class="pub">
-        <div class="title">
-          <a href="https://doi.org/10.3390/galaxies13050101" target="_blank" rel="noopener">
-            Determination of orbital parameters of binary star systems using the MCMC method
-          </a>
-        </div>
+        <div class="title"><a href="https://doi.org/10.3390/galaxies13050101" target="_blank" rel="noopener">Determination of orbital parameters of binary star systems using the MCMC method</a></div>
         <div class="meta">Vaidman, Nurmakhametova et al. (2025), Galaxies</div>
-        <a href="https://doi.org/10.3390/galaxies13050101" target="_blank" rel="noopener">DOI: 10.3390/galaxies13050101</a>
       </article>
 
       <article class="pub">
-        <div class="title">
-          <a href="https://doi.org/10.26577/phst20251215" target="_blank" rel="noopener">
-            Method for determining the physical parameters of hot supergiants based on spectral energy distribution analysis
-          </a>
-        </div>
+        <div class="title"><a href="https://doi.org/10.26577/phst20251215" target="_blank" rel="noopener">Method for determining the physical parameters of hot supergiants based on spectral energy distribution analysis</a></div>
         <div class="meta">Gyuchtash, Nurmakhametova et al. (2025), Physical Sciences and Technology</div>
-        <a href="https://doi.org/10.26577/phst20251215" target="_blank" rel="noopener">DOI: 10.26577/phst20251215</a>
       </article>
 
       <article class="pub">
-        <div class="title">
-          <a href="https://doi.org/10.3390/galaxies13020026" target="_blank" rel="noopener">
-            HR 4049: A spectroscopic analysis of a post-AGB object
-          </a>
-        </div>
+        <div class="title"><a href="https://doi.org/10.3390/galaxies13020026" target="_blank" rel="noopener">HR 4049: A spectroscopic analysis of a post-AGB object</a></div>
         <div class="meta">Nurmakhametova, Vaidman et al. (2025), Galaxies, 13(2), 26</div>
-        <a href="https://doi.org/10.3390/galaxies13020026" target="_blank" rel="noopener">DOI: 10.3390/galaxies13020026</a>
       </article>
     </section>
 
-    <section id="teaching">
+    <!-- TEACHING -->
+    <section class="page" id="teaching">
       <h2 class="section-title">Teaching Experience</h2>
       <div class="card">
         <p>
@@ -289,17 +295,76 @@
       </div>
     </section>
 
-    <section id="contact">
-      <h2 class="section-title">Contact</h2>
+    <!-- HOBBY -->
+    <section class="page" id="hobby">
+      <h2 class="section-title">Hobby</h2>
       <div class="card">
-        <p><strong>Email:</strong> <a href="mailto:shahidanurmahametova@gmail.com">shahidanurmahametova@gmail.com</a></p>
-        <p><strong>Address:</strong> 71/23 al-Farabi Ave., Almaty, 050040, Kazakhstan</p>
+        <p>
+          I enjoy reading, especially classical literature and fantasy novels.
+          I am passionate about gardening and spend time growing flowers and trees.
+          I also teach astronomy to children and teenagers, which combines my interest in science and education.
+          I love traveling and gaining new experiences through new places and cultures.
+          In my free time, I draw, knit, and run regularly, including participation in marathon events.
+        </p>
       </div>
     </section>
 
-    <div class="footer">
-      © 2026 Shakhida Nurmakhametova — Professional Portfolio
-    </div>
+    <!-- JOB -->
+    <section class="page" id="job">
+      <h2 class="section-title">Job</h2>
+      <div class="card">
+        <p><strong>Research Center “Data Science in Astrophysics” named after Z. Zhanabayev</strong></p>
+        <p><strong>Position:</strong> Laboratory Assistant, Laboratory of Data Analysis in Astrophysics (KazNU)</p>
+      </div>
+    </section>
+
+    <!-- ANALYTIC -->
+    <section class="page" id="analytic">
+      <h2 class="section-title">Analytic Part</h2>
+      <div class="card">
+        <p>Content will be added soon.</p>
+      </div>
+    </section>
+
+    <!-- DIPLOMA -->
+    <section class="page" id="diploma">
+      <h2 class="section-title">Diploma</h2>
+      <div class="pdf-wrap">
+        <!-- Загрузи diploma.pdf в тот же репозиторий -->
+        <iframe src="diploma.pdf"></iframe>
+      </div>
+      <p class="muted">If the PDF is not displayed, open <a href="diploma.pdf" target="_blank">direct link</a>.</p>
+    </section>
+
+    <div class="footer">© 2026 Shakhida Nurmakhametova — Professional Portfolio</div>
   </main>
+
+  <script>
+    const buttons = document.querySelectorAll('#menu button');
+    const pages = document.querySelectorAll('.page');
+
+    function openTab(tabId, pushHash = true) {
+      pages.forEach(p => p.classList.remove('active'));
+      buttons.forEach(b => b.classList.remove('active'));
+
+      const page = document.getElementById(tabId);
+      const btn = document.querySelector(`#menu button[data-tab="${tabId}"]`);
+
+      if (page && btn) {
+        page.classList.add('active');
+        btn.classList.add('active');
+        if (pushHash) history.replaceState(null, '', '#' + tabId);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => openTab(btn.dataset.tab));
+    });
+
+    // Открывать вкладку по ссылке типа index.html#publications
+    const hash = location.hash.replace('#', '');
+    if (hash && document.getElementById(hash)) openTab(hash, false);
+  </script>
 </body>
 </html>
