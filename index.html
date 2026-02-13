@@ -15,7 +15,9 @@
       --line:#2d3a6e;
       --ok:#9be38a;
     }
+
     *{box-sizing:border-box}
+    html, body {height:100%}
     body{
       margin:0;
       font-family: "Segoe UI", Roboto, Arial, sans-serif;
@@ -23,24 +25,32 @@
       color:var(--text);
       line-height:1.55;
     }
+
     a{color:var(--accent); text-decoration:none}
     a:hover{text-decoration:underline}
-    .container{width:min(1100px,92%); margin:0 auto}
+    .container{width:min(1140px,92%); margin:0 auto}
 
+    /* Header */
     header{
-      position:sticky; top:0; z-index:20;
+      position:sticky; top:0; z-index:30;
       backdrop-filter: blur(8px);
       background: rgba(11,16,32,.9);
       border-bottom:1px solid var(--line);
     }
     .nav{
       display:flex; align-items:center; justify-content:space-between;
-      padding:14px 0;
-      gap:12px;
+      gap:12px; padding:14px 0;
     }
-    .brand{font-weight:700; letter-spacing:.3px}
+    .brand{
+      font-weight:700;
+      letter-spacing:.3px;
+      white-space:nowrap;
+    }
     .menu{
-      display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end;
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
     }
     .menu button{
       border:1px solid var(--line);
@@ -50,33 +60,48 @@
       border-radius:999px;
       font-size:14px;
       cursor:pointer;
+      transition:.15s ease;
     }
+    .menu button:hover{transform:translateY(-1px)}
     .menu button.active{
       border-color:var(--accent);
       box-shadow:0 0 0 1px var(--accent) inset;
       background:#132353;
     }
 
-    main{padding:22px 0 28px}
+    /* Main + pages */
+    main{padding:22px 0 30px}
     .page{
       display:none;
       animation:fade .2s ease;
     }
     .page.active{display:block}
-    @keyframes fade {from{opacity:.65; transform:translateY(2px)} to{opacity:1; transform:none}}
-
-    .hero{
-      padding:12px 0 6px;
-      display:grid;
-      grid-template-columns: 1.3fr .9fr;
-      gap:20px;
+    @keyframes fade{
+      from{opacity:.65; transform:translateY(2px)}
+      to{opacity:1; transform:none}
     }
+
+    /* Blocks */
     .card{
       background:linear-gradient(160deg,var(--card),var(--card2));
       border:1px solid var(--line);
       border-radius:18px;
       padding:24px;
       box-shadow:0 8px 26px rgba(0,0,0,.25);
+    }
+    .section-title{
+      font-size:28px;
+      margin:8px 0 14px;
+      letter-spacing:.2px;
+    }
+    .muted{color:var(--muted)}
+
+    /* Hero */
+    .hero{
+      display:grid;
+      grid-template-columns:1.3fr .9fr;
+      gap:20px;
+      padding:12px 0 6px;
     }
     .hero h1{margin:0 0 8px; font-size:34px}
     .subtitle{color:var(--muted); margin-bottom:16px}
@@ -85,14 +110,12 @@
       border:1px solid var(--line);
       padding:6px 10px;
       border-radius:999px;
-      font-size:13px; color:#d7e1ff;
+      font-size:13px;
+      color:#d7e1ff;
       background:#111c40;
     }
-    .quick p{margin:8px 0}
-    .section-title{
-      font-size:26px; margin:8px 0 14px;
-      letter-spacing:.2px;
-    }
+
+    /* Grids */
     .grid-2{
       display:grid;
       grid-template-columns:1fr 1fr;
@@ -100,10 +123,13 @@
     }
     .timeline-item{
       border-left:2px solid var(--line);
-      margin-left:8px; padding-left:14px; margin-bottom:14px;
+      margin-left:8px;
+      padding-left:14px;
+      margin-bottom:14px;
     }
     .date{color:var(--ok); font-weight:600; font-size:14px}
-    .muted{color:var(--muted)}
+
+    /* Publications */
     .pub{
       padding:14px;
       border:1px solid var(--line);
@@ -113,13 +139,129 @@
     }
     .pub .title{font-weight:650}
     .pub .meta{color:var(--muted); font-size:14px; margin:6px 0}
-    .footer{
-      margin:24px 0 18px;
+
+    /* Universal image styles to avoid format issues */
+    .img-box{
+      width:100%;
+      background:#0f1735;
+      border:1px solid var(--line);
+      border-radius:14px;
+      overflow:hidden;
+    }
+    .img-cover{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    .img-contain{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      display:block;
+      background:#0f1735;
+    }
+    .caption{
+      margin-top:8px;
+      font-size:13px;
       color:var(--muted);
-      text-align:center;
-      font-size:14px;
     }
 
+    /* Education photo block */
+    .edu-photo{
+      height:min(52vw, 380px); /* responsive and safe */
+      min-height:220px;
+      max-height:420px;
+      margin-top:14px;
+    }
+
+    /* Hobby gallery */
+    .gallery{
+      margin-top:14px;
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(190px,1fr));
+      gap:12px;
+    }
+    .gallery figure{
+      margin:0;
+      padding:10px;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:#101a3b;
+    }
+    .gallery .thumb{
+      height:170px;
+      border-radius:10px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background:#0f1735;
+    }
+    .gallery figcaption{
+      margin-top:7px;
+      font-size:13px;
+      color:var(--muted);
+      text-align:center;
+    }
+
+    /* Travel layout */
+    .travel-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin-top:12px;
+    }
+    .travel-photo{
+      height:260px;
+      border-radius:12px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background:#0f1735;
+    }
+
+    /* Job gallery */
+    .job-lead{
+      display:grid;
+      grid-template-columns:1fr 1.05fr;
+      gap:16px;
+      align-items:start;
+    }
+    .job-main-photo{
+      height:min(58vw, 430px);
+      min-height:260px;
+      max-height:450px;
+      border-radius:14px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background:#0f1735;
+    }
+    .job-gallery{
+      margin-top:14px;
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
+      gap:12px;
+    }
+    .job-gallery figure{
+      margin:0;
+      padding:10px;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:#101a3b;
+    }
+    .job-gallery .thumb{
+      height:170px;
+      border-radius:10px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background:#0f1735;
+    }
+    .job-gallery figcaption{
+      margin-top:7px;
+      font-size:13px;
+      color:var(--muted);
+      text-align:center;
+    }
+
+    /* PDF */
     .pdf-wrap{
       background:#121a33;
       border:1px solid var(--line);
@@ -134,52 +276,20 @@
       background:#fff;
     }
 
-    /* Images */
-    .photo{
-      width:100%;
-      border-radius:12px;
-      border:1px solid var(--line);
-      margin-top:12px;
-      object-fit:cover;
-      background:#0f1735;
-    }
-    .photo-large{max-height:440px}
-    .photo-medium{max-height:320px}
-    .photo-small{max-height:240px}
-
-    .gallery{
-      margin-top:14px;
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-      gap:12px;
-    }
-    .gallery figure{
-      margin:0;
-      padding:10px;
-      border:1px solid var(--line);
-      border-radius:12px;
-      background:#101a3b;
-    }
-    .gallery img{
-      width:100%;
-      height:170px;
-      object-fit:cover;
-      border-radius:10px;
-      border:1px solid var(--line);
-      background:#0f1735;
-    }
-    .gallery figcaption{
-      margin-top:6px;
-      font-size:13px;
+    .footer{
+      margin:24px 0 16px;
       color:var(--muted);
       text-align:center;
+      font-size:14px;
     }
 
-    @media (max-width:900px){
+    @media (max-width:980px){
       .nav{flex-direction:column; align-items:flex-start}
       .hero{grid-template-columns:1fr}
       .grid-2{grid-template-columns:1fr}
-      .hero h1{font-size:29px}
+      .hero h1{font-size:30px}
+      .job-lead{grid-template-columns:1fr}
+      .travel-grid{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -208,7 +318,9 @@
       <div class="hero">
         <div class="card">
           <h1>Shakhida Nurmakhametova</h1>
-          <div class="subtitle">Professional portfolio on my specialty — <strong>My place in the profession</strong></div>
+          <div class="subtitle">
+            Professional portfolio on my specialty — <strong>My place in the profession</strong>
+          </div>
           <p>
             I am an early-career astrophysics researcher focused on stellar systems and their evolution.
             My current place in the profession is at the intersection of observation, data analysis, and modeling:
@@ -224,13 +336,15 @@
           </div>
         </div>
 
-        <aside class="card quick">
+        <aside class="card">
           <h3 style="margin-top:0">Quick Profile</h3>
           <p><strong>Location:</strong> Almaty, Kazakhstan</p>
           <p><strong>Email:</strong> <a href="mailto:shahidanurmahametova@gmail.com">shahidanurmahametova@gmail.com</a></p>
           <p><strong>Degree:</strong> BSc in Physics and Astronomy (currently pursuing an MSc)</p>
           <p><strong>Institution:</strong> Al-Farabi Kazakh National University</p>
-          <p class="muted">Research direction: post-AGB stars, high-energy variability, orbital parameter estimation, Gaia-based stellar studies.</p>
+          <p class="muted">
+            Research direction: post-AGB stars, high-energy variability, orbital parameter estimation, Gaia-based stellar studies.
+          </p>
         </aside>
       </div>
     </section>
@@ -252,10 +366,6 @@
             <div class="muted">Al-Farabi Kazakh National University</div>
             <div>Thesis: <em>Study of Evolutionary Processes in BS 4049</em></div>
           </div>
-
-          <!-- Graduation photo -->
-          <img src="b1.jpg" alt="Graduation photo" class="photo photo-large">
-          <p class="muted" style="margin-top:8px">Graduation moment (BSc completion).</p>
         </div>
 
         <div class="card">
@@ -263,11 +373,18 @@
           <p>Kazakh — native speaker</p>
           <p>English — fluent</p>
           <p>Russian — fluent</p>
-
           <h3>Technical Skills</h3>
           <p><strong>Programming / Tools:</strong> Fortran, Python (AstroPy), IRAF, DS9, CIAO, XSPEC</p>
           <p><strong>OS / Platforms:</strong> Linux (Ubuntu), Windows, Hyper-V</p>
         </div>
+      </div>
+
+      <div class="card" style="margin-top:16px">
+        <h3 style="margin-top:0">Graduation</h3>
+        <div class="img-box edu-photo">
+          <img src="b1.jpg" alt="Graduation photo" class="img-cover" loading="lazy">
+        </div>
+        <p class="caption">BSc graduation photo.</p>
       </div>
     </section>
 
@@ -298,6 +415,22 @@
             Visit for establishing research collaboration on the study of X-ray stars
             (joint analysis planning, observational strategy, and future co-authored work).
           </p>
+        </div>
+
+        <div class="travel-grid">
+          <figure style="margin:0">
+            <div class="travel-photo">
+              <img src="t1.jpg" alt="Neva river in Saint Petersburg" class="img-cover" loading="lazy">
+            </div>
+            <figcaption class="caption">Neva, Saint Petersburg.</figcaption>
+          </figure>
+
+          <figure style="margin:0">
+            <div class="travel-photo">
+              <img src="t2.jpg" alt="Pulkovo Observatory, Saint Petersburg" class="img-cover" loading="lazy">
+            </div>
+            <figcaption class="caption">Pulkovo Observatory, Saint Petersburg.</figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -368,20 +501,38 @@
 
         <div class="gallery">
           <figure>
-            <img src="f1.jpg" alt="Flower photo 1">
-            <figcaption>Gardening: flowers</figcaption>
+            <div class="thumb">
+              <img src="f1.jpg" alt="Flower photo 1" class="img-cover" loading="lazy">
+            </div>
+            <figcaption>Flowers and gardening</figcaption>
           </figure>
+
           <figure>
-            <img src="f2.jpg" alt="Flower photo 2">
-            <figcaption>Gardening: plants and care</figcaption>
+            <div class="thumb">
+              <img src="f2.jpg" alt="Flower photo 2" class="img-cover" loading="lazy">
+            </div>
+            <figcaption>Plant care</figcaption>
           </figure>
+
           <figure>
-            <img src="f3.jpg" alt="Flower photo 3">
-            <figcaption>Gardening: growing trees and flowers</figcaption>
+            <div class="thumb">
+              <img src="f3.jpg" alt="Flower photo 3" class="img-cover" loading="lazy">
+            </div>
+            <figcaption>Growing flowers and trees</figcaption>
           </figure>
+
           <figure>
-            <img src="m1.jpg" alt="Marathon and running">
-            <figcaption>Running and marathon participation</figcaption>
+            <div class="thumb">
+              <img src="m1.jpg" alt="Marathon photo 1" class="img-cover" loading="lazy">
+            </div>
+            <figcaption>Running and marathons</figcaption>
+          </figure>
+
+          <figure>
+            <div class="thumb">
+              <img src="m2.jpg" alt="Marathon photo 2" class="img-cover" loading="lazy">
+            </div>
+            <figcaption>Race participation</figcaption>
           </figure>
         </div>
       </div>
@@ -391,16 +542,59 @@
     <section class="page" id="job">
       <h2 class="section-title">Job</h2>
       <div class="card">
-        <p><strong>Research Center “Data Science in Astrophysics” named after Z. Zhanabayev</strong></p>
-        <p><strong>Position:</strong> Laboratory Assistant, Laboratory of Data Analysis in Astrophysics (KazNU)</p>
-        <p class="muted">
-          Research activities include data processing, astrophysical analysis workflows, and observational support.
-        </p>
+        <div class="job-lead">
+          <div>
+            <div class="job-main-photo">
+              <img src="w1.jpg" alt="Assy-Turgen Observatory, Edelweiss tower" class="img-cover" loading="lazy">
+            </div>
+            <p class="caption">Assy-Turgen: Edelweiss tower and telescope infrastructure.</p>
+          </div>
 
-        <img src="w1.jpg" alt="Assy-Turgen telescope site: Edelweiss tower" class="photo photo-medium">
-        <p class="muted" style="margin-top:8px">
-          Assy-Turgen Observatory area: Edelweiss tower and telescope infrastructure.
-        </p>
+          <div>
+            <p><strong>Research Center “Data Science in Astrophysics” named after Z. Zhanabayev</strong></p>
+            <p><strong>Position:</strong> Laboratory Assistant, Laboratory of Data Analysis in Astrophysics (KazNU)</p>
+            <p class="muted">
+              Research activities include data processing, astrophysical analysis workflows, and observational support.
+            </p>
+          </div>
+        </div>
+
+        <div class="job-gallery">
+          <figure>
+            <div class="thumb">
+              <img src="w2.jpg" alt="AZT-20 telescope" class="img-cover" loading="lazy">
+            </div>
+            <figcaption>AZT-20 telescope</figcaption>
+          </figure>
+
+          <figure>
+            <div class="thumb">
+              <img src="w3.jpg" alt="Operating AZT telescope" class="img-cover" loading="lazy">
+            </div>
+            <figcaption>Operating AZT</figcaption>
+          </figure>
+
+          <figure>
+            <div class="thumb">
+              <img src="w4.jpg" alt="Other telescopes at Assy-Turgen site" class="img-cover" loading="lazy">
+            </div>
+            <figcaption>Other telescopes at Assy-Turgen</figcaption>
+          </figure>
+
+          <figure>
+            <div class="thumb">
+              <img src="w5.jpg" alt="Observing session photo 1" class="img-cover" loading="lazy">
+            </div>
+            <figcaption>Observing session</figcaption>
+          </figure>
+
+          <figure>
+            <div class="thumb">
+              <img src="w6.jpg" alt="Observing session photo 2" class="img-cover" loading="lazy">
+            </div>
+            <figcaption>Night observations</figcaption>
+          </figure>
+        </div>
       </div>
     </section>
 
