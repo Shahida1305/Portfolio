@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -14,6 +14,8 @@
       --accent:#6ea8ff;
       --line:#2d3a6e;
       --ok:#9be38a;
+      --warn:#ffd479;
+      --danger:#ff9c9c;
     }
 
     *{box-sizing:border-box}
@@ -28,7 +30,7 @@
 
     a{color:var(--accent); text-decoration:none}
     a:hover{text-decoration:underline}
-    .container{width:min(1140px,92%); margin:0 auto}
+    .container{width:min(1160px,92%); margin:0 auto}
 
     /* Header */
     header{
@@ -69,7 +71,6 @@
       background:#132353;
     }
 
-    /* Main + pages */
     main{padding:22px 0 30px}
     .page{
       display:none;
@@ -81,7 +82,6 @@
       to{opacity:1; transform:none}
     }
 
-    /* Blocks */
     .card{
       background:linear-gradient(160deg,var(--card),var(--card2));
       border:1px solid var(--line);
@@ -115,7 +115,6 @@
       background:#111c40;
     }
 
-    /* Grids */
     .grid-2{
       display:grid;
       grid-template-columns:1fr 1fr;
@@ -129,7 +128,6 @@
     }
     .date{color:var(--ok); font-weight:600; font-size:14px}
 
-    /* Publications */
     .pub{
       padding:14px;
       border:1px solid var(--line);
@@ -140,7 +138,7 @@
     .pub .title{font-weight:650}
     .pub .meta{color:var(--muted); font-size:14px; margin:6px 0}
 
-    /* Universal image styles to avoid format issues */
+    /* Images */
     .img-box{
       width:100%;
       background:#0f1735;
@@ -154,28 +152,19 @@
       object-fit:cover;
       display:block;
     }
-    .img-contain{
-      width:100%;
-      height:100%;
-      object-fit:contain;
-      display:block;
-      background:#0f1735;
-    }
     .caption{
       margin-top:8px;
       font-size:13px;
       color:var(--muted);
     }
 
-    /* Education photo block */
     .edu-photo{
-      height:min(52vw, 380px); /* responsive and safe */
+      height:min(52vw, 380px);
       min-height:220px;
       max-height:420px;
       margin-top:14px;
     }
 
-    /* Hobby gallery */
     .gallery{
       margin-top:14px;
       display:grid;
@@ -203,7 +192,6 @@
       text-align:center;
     }
 
-    /* Travel layout */
     .travel-grid{
       display:grid;
       grid-template-columns:1fr 1fr;
@@ -218,7 +206,6 @@
       background:#0f1735;
     }
 
-    /* Job gallery */
     .job-lead{
       display:grid;
       grid-template-columns:1fr 1.05fr;
@@ -261,7 +248,60 @@
       text-align:center;
     }
 
-    /* PDF */
+    /* Analytic cards */
+    .vacancy{
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:#101a3b;
+      padding:14px;
+      margin-bottom:12px;
+    }
+    .vacancy h3{
+      margin:0 0 8px;
+      font-size:18px;
+    }
+    .badges{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin:8px 0 12px;
+    }
+    .badge{
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:4px 10px;
+      font-size:12px;
+      background:#14204a;
+      color:#dce6ff;
+    }
+
+    .score-row{
+      display:grid;
+      grid-template-columns:160px 1fr 84px;
+      gap:10px;
+      align-items:center;
+      margin:7px 0;
+    }
+    .bar{
+      width:100%;
+      height:10px;
+      border-radius:999px;
+      background:#0f1735;
+      border:1px solid var(--line);
+      overflow:hidden;
+    }
+    .fill{
+      height:100%;
+      background:linear-gradient(90deg,#6ea8ff,#9be38a);
+    }
+
+    .lang-box{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin-bottom:12px;
+    }
+
     .pdf-wrap{
       background:#121a33;
       border:1px solid var(--line);
@@ -290,6 +330,8 @@
       .hero h1{font-size:30px}
       .job-lead{grid-template-columns:1fr}
       .travel-grid{grid-template-columns:1fr}
+      .lang-box{grid-template-columns:1fr}
+      .score-row{grid-template-columns:1fr; gap:4px}
     }
   </style>
 </head>
@@ -371,8 +413,9 @@
         <div class="card">
           <h3 style="margin-top:0">Languages</h3>
           <p>Kazakh — native speaker</p>
-          <p>English — fluent</p>
+          <p>English — B2</p>
           <p>Russian — fluent</p>
+
           <h3>Technical Skills</h3>
           <p><strong>Programming / Tools:</strong> Fortran, Python (AstroPy), IRAF, DS9, CIAO, XSPEC</p>
           <p><strong>OS / Platforms:</strong> Linux (Ubuntu), Windows, Hyper-V</p>
@@ -495,43 +538,28 @@
           I enjoy reading, especially classical literature and fantasy novels.
           I am passionate about gardening and spend time growing flowers and trees.
           I also teach astronomy to children and teenagers, which combines my interest in science and education.
-          I love traveling and gaining new experiences through new places and cultures.
-          In my free time, I draw, knit, and run regularly, including participation in marathon events.
+          I love traveling, drawing, knitting, and running regularly, including marathon participation.
         </p>
 
         <div class="gallery">
           <figure>
-            <div class="thumb">
-              <img src="f1.jpg" alt="Flower photo 1" class="img-cover" loading="lazy">
-            </div>
+            <div class="thumb"><img src="f1.jpg" alt="Flower photo 1" class="img-cover" loading="lazy"></div>
             <figcaption>Flowers and gardening</figcaption>
           </figure>
-
           <figure>
-            <div class="thumb">
-              <img src="f2.jpg" alt="Flower photo 2" class="img-cover" loading="lazy">
-            </div>
+            <div class="thumb"><img src="f2.jpg" alt="Flower photo 2" class="img-cover" loading="lazy"></div>
             <figcaption>Plant care</figcaption>
           </figure>
-
           <figure>
-            <div class="thumb">
-              <img src="f3.jpg" alt="Flower photo 3" class="img-cover" loading="lazy">
-            </div>
+            <div class="thumb"><img src="f3.jpg" alt="Flower photo 3" class="img-cover" loading="lazy"></div>
             <figcaption>Growing flowers and trees</figcaption>
           </figure>
-
           <figure>
-            <div class="thumb">
-              <img src="m1.jpg" alt="Marathon photo 1" class="img-cover" loading="lazy">
-            </div>
+            <div class="thumb"><img src="m1.jpg" alt="Marathon photo 1" class="img-cover" loading="lazy"></div>
             <figcaption>Running and marathons</figcaption>
           </figure>
-
           <figure>
-            <div class="thumb">
-              <img src="m2.jpg" alt="Marathon photo 2" class="img-cover" loading="lazy">
-            </div>
+            <div class="thumb"><img src="m2.jpg" alt="Marathon photo 2" class="img-cover" loading="lazy"></div>
             <figcaption>Race participation</figcaption>
           </figure>
         </div>
@@ -561,37 +589,23 @@
 
         <div class="job-gallery">
           <figure>
-            <div class="thumb">
-              <img src="w2.jpg" alt="AZT-20 telescope" class="img-cover" loading="lazy">
-            </div>
+            <div class="thumb"><img src="w2.jpg" alt="AZT-20 telescope" class="img-cover" loading="lazy"></div>
             <figcaption>AZT-20 telescope</figcaption>
           </figure>
-
           <figure>
-            <div class="thumb">
-              <img src="w3.jpg" alt="Operating AZT telescope" class="img-cover" loading="lazy">
-            </div>
+            <div class="thumb"><img src="w3.jpg" alt="Operating AZT telescope" class="img-cover" loading="lazy"></div>
             <figcaption>Operating AZT</figcaption>
           </figure>
-
           <figure>
-            <div class="thumb">
-              <img src="w4.jpg" alt="Other telescopes at Assy-Turgen site" class="img-cover" loading="lazy">
-            </div>
+            <div class="thumb"><img src="w4.jpg" alt="Other telescopes at Assy-Turgen" class="img-cover" loading="lazy"></div>
             <figcaption>Other telescopes at Assy-Turgen</figcaption>
           </figure>
-
           <figure>
-            <div class="thumb">
-              <img src="w5.jpg" alt="Observing session photo 1" class="img-cover" loading="lazy">
-            </div>
-            <figcaption>Observing session</figcaption>
+            <div class="thumb"><img src="w5.jpg" alt="Observation session 1" class="img-cover" loading="lazy"></div>
+            <figcaption>Observation session</figcaption>
           </figure>
-
           <figure>
-            <div class="thumb">
-              <img src="w6.jpg" alt="Observing session photo 2" class="img-cover" loading="lazy">
-            </div>
+            <div class="thumb"><img src="w6.jpg" alt="Observation session 2" class="img-cover" loading="lazy"></div>
             <figcaption>Night observations</figcaption>
           </figure>
         </div>
@@ -601,8 +615,172 @@
     <!-- ANALYTIC -->
     <section class="page" id="analytic">
       <h2 class="section-title">Analytic Part</h2>
+
       <div class="card">
-        <p>Content will be added soon.</p>
+        <h3 style="margin-top:0">English Level Requirement vs My Level</h3>
+        <div class="lang-box">
+          <div class="vacancy" style="margin:0">
+            <p style="margin:0"><strong>My current English level:</strong> B2</p>
+            <p class="muted" style="margin:6px 0 0">Working level for reading papers, scientific writing, and international communication.</p>
+          </div>
+          <div class="vacancy" style="margin:0">
+            <p style="margin:0"><strong>Target for competitive applications:</strong> C1</p>
+            <p class="muted" style="margin:6px 0 0">For stronger interviews, grant writing, and international collaboration roles.</p>
+          </div>
+        </div>
+
+        <!-- 1) CIS -->
+        <div class="vacancy">
+          <h3>1) CIS Vacancy — Junior Researcher in Astrophysics (Russia, Pulkovo Observatory)</h3>
+          <div class="badges">
+            <span class="badge">Region: CIS</span>
+            <span class="badge">Field: Observational Astrophysics</span>
+            <span class="badge">Required English: B1–B2</span>
+          </div>
+
+          <p><strong>Candidate requirements:</strong></p>
+          <ul>
+            <li>BSc/MSc in Physics, Astronomy, or related field.</li>
+            <li>Experience with spectroscopy/photometry and observational data reduction.</li>
+            <li>Python for scientific data processing.</li>
+            <li>Ability to prepare reports and publication drafts.</li>
+          </ul>
+
+          <p><strong>Match score:</strong> 86% (86/100)</p>
+          <div class="score-row"><div>Technical skills</div><div class="bar"><div class="fill" style="width:90%"></div></div><div>90/100</div></div>
+          <div class="score-row"><div>Observational work</div><div class="bar"><div class="fill" style="width:85%"></div></div><div>85/100</div></div>
+          <div class="score-row"><div>Publications</div><div class="bar"><div class="fill" style="width:80%"></div></div><div>80/100</div></div>
+          <div class="score-row"><div>English fit</div><div class="bar"><div class="fill" style="width:90%"></div></div><div>90/100</div></div>
+
+          <p><strong>Gap-closing actions:</strong> strengthen advanced statistics and proposal writing; complete one short research methods course.</p>
+          <p class="muted"><strong>Estimated timeline:</strong> 2–3 months.</p>
+        </div>
+
+        <!-- 2) Kazakhstan -->
+        <div class="vacancy">
+          <h3>2) Kazakhstan Vacancy — Research Engineer in Astrophysical Data Analysis (Almaty, Fesenkov Astrophysical Institute)</h3>
+          <div class="badges">
+            <span class="badge">Region: Kazakhstan</span>
+            <span class="badge">Field: Data Analysis</span>
+            <span class="badge">Required English: B2</span>
+          </div>
+
+          <p><strong>Candidate requirements:</strong></p>
+          <ul>
+            <li>Strong Python stack for astronomy (AstroPy, NumPy, pandas, plotting).</li>
+            <li>Experience with FITS processing and observational pipelines.</li>
+            <li>Teamwork in research projects and technical documentation.</li>
+            <li>Basic Linux workflow and version control.</li>
+          </ul>
+
+          <p><strong>Match score:</strong> 89% (89/100)</p>
+          <div class="score-row"><div>Technical skills</div><div class="bar"><div class="fill" style="width:92%"></div></div><div>92/100</div></div>
+          <div class="score-row"><div>Pipeline experience</div><div class="bar"><div class="fill" style="width:88%"></div></div><div>88/100</div></div>
+          <div class="score-row"><div>Documentation</div><div class="bar"><div class="fill" style="width:84%"></div></div><div>84/100</div></div>
+          <div class="score-row"><div>English fit</div><div class="bar"><div class="fill" style="width:90%"></div></div><div>90/100</div></div>
+
+          <p><strong>Gap-closing actions:</strong> add Git/GitHub portfolio with 2–3 polished public pipelines and short README-based case studies.</p>
+          <p class="muted"><strong>Estimated timeline:</strong> 1–2 months.</p>
+        </div>
+
+        <!-- 3) Kazakhstan -->
+        <div class="vacancy">
+          <h3>3) Kazakhstan Vacancy — Telescope Operator / Junior Astronomer (Assy-Turgen Observatory)</h3>
+          <div class="badges">
+            <span class="badge">Region: Kazakhstan</span>
+            <span class="badge">Field: Observations</span>
+            <span class="badge">Required English: B1–B2</span>
+          </div>
+
+          <p><strong>Candidate requirements:</strong></p>
+          <ul>
+            <li>Hands-on observing experience with optical telescopes.</li>
+            <li>Night-shift operations and observing logs.</li>
+            <li>Basic instrument calibration and troubleshooting.</li>
+            <li>Data transfer, quality check, and primary reduction.</li>
+          </ul>
+
+          <p><strong>Match score:</strong> 93% (93/100)</p>
+          <div class="score-row"><div>Observing skills</div><div class="bar"><div class="fill" style="width:95%"></div></div><div>95/100</div></div>
+          <div class="score-row"><div>Instrument handling</div><div class="bar"><div class="fill" style="width:90%"></div></div><div>90/100</div></div>
+          <div class="score-row"><div>Data workflow</div><div class="bar"><div class="fill" style="width:92%"></div></div><div>92/100</div></div>
+          <div class="score-row"><div>English fit</div><div class="bar"><div class="fill" style="width:95%"></div></div><div>95/100</div></div>
+
+          <p><strong>Gap-closing actions:</strong> complete one advanced instrumentation training module and safety certification update.</p>
+          <p class="muted"><strong>Estimated timeline:</strong> 1 month.</p>
+        </div>
+
+        <!-- 4) Belgium -->
+        <div class="vacancy">
+          <h3>4) International Vacancy — PhD/Research Assistant in Stellar Astrophysics (Belgium, KU Leuven / Royal Observatory collaborations)</h3>
+          <div class="badges">
+            <span class="badge">Region: Abroad (Belgium)</span>
+            <span class="badge">Field: Stellar Astrophysics</span>
+            <span class="badge">Required English: C1</span>
+          </div>
+
+          <p><strong>Candidate requirements:</strong></p>
+          <ul>
+            <li>MSc (or final-stage MSc) in Physics/Astronomy.</li>
+            <li>Strong publication potential and recommendation letters.</li>
+            <li>Advanced Python + statistical methods (MCMC/Bayesian tools).</li>
+            <li>Confident scientific writing and presentations in English.</li>
+          </ul>
+
+          <p><strong>Match score:</strong> 74% (74/100)</p>
+          <div class="score-row"><div>Scientific profile</div><div class="bar"><div class="fill" style="width:78%"></div></div><div>78/100</div></div>
+          <div class="score-row"><div>Methods/statistics</div><div class="bar"><div class="fill" style="width:72%"></div></div><div>72/100</div></div>
+          <div class="score-row"><div>Publication readiness</div><div class="bar"><div class="fill" style="width:76%"></div></div><div>76/100</div></div>
+          <div class="score-row"><div>English fit</div><div class="bar"><div class="fill" style="width:68%"></div></div><div>68/100</div></div>
+
+          <p><strong>Gap-closing actions:</strong></p>
+          <ul>
+            <li>Raise English from B2 to C1 via intensive academic English course.</li>
+            <li>Finish MSc milestones and add one stronger first-author submission.</li>
+            <li>Prepare research statement and recommendation package.</li>
+          </ul>
+          <p class="muted"><strong>Estimated timeline:</strong> 8–12 months (English C1: 6–9 months, application package: 2–3 months in parallel).</p>
+        </div>
+
+        <!-- 5) Germany -->
+        <div class="vacancy">
+          <h3>5) International Vacancy — Research Assistant in Astrophysical Data Science (Germany, university observatory / Max Planck group-level positions)</h3>
+          <div class="badges">
+            <span class="badge">Region: Abroad (Germany)</span>
+            <span class="badge">Field: Astro Data Science</span>
+            <span class="badge">Required English: C1</span>
+          </div>
+
+          <p><strong>Candidate requirements:</strong></p>
+          <ul>
+            <li>Strong coding profile (Python, reproducible pipelines, Git).</li>
+            <li>Experience with large survey datasets and spectral analysis.</li>
+            <li>Good mathematical and statistical background.</li>
+            <li>Clear English communication for teamwork and publications.</li>
+          </ul>
+
+          <p><strong>Match score:</strong> 77% (77/100)</p>
+          <div class="score-row"><div>Coding profile</div><div class="bar"><div class="fill" style="width:83%"></div></div><div>83/100</div></div>
+          <div class="score-row"><div>Survey-data experience</div><div class="bar"><div class="fill" style="width:74%"></div></div><div>74/100</div></div>
+          <div class="score-row"><div>Statistics/math</div><div class="bar"><div class="fill" style="width:73%"></div></div><div>73/100</div></div>
+          <div class="score-row"><div>English fit</div><div class="bar"><div class="fill" style="width:70%"></div></div><div>70/100</div></div>
+
+          <p><strong>Gap-closing actions:</strong></p>
+          <ul>
+            <li>Raise English from B2 to C1 (focus on speaking + writing for interviews and research communication).</li>
+            <li>Build a public GitHub portfolio with 3 complete astro-data projects.</li>
+            <li>Take one advanced course in Bayesian inference / time-series analysis.</li>
+          </ul>
+          <p class="muted"><strong>Estimated timeline:</strong> 6–10 months (English C1: 6–8 months; portfolio + course: 2–4 months, partly parallel).</p>
+        </div>
+
+        <div class="vacancy" style="margin-bottom:0">
+          <h3 style="margin-bottom:6px">Summary</h3>
+          <p style="margin:0">
+            The highest current fit is for Kazakhstan observational and data-analysis positions (89–93%).
+            For competitive Belgium/Germany roles, the main bottleneck is English level (B2 → C1) and deeper formalization of methods portfolio.
+          </p>
+        </div>
       </div>
     </section>
 
